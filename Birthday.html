@@ -1,0 +1,803 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>A Day at Karkloof Falls · May 2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Parisienne&display=swap" rel="stylesheet">
+<script crossorigin src="https://unpkg.com/react@18.3.1/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<style>
+  :root{
+    --cream-50:#fbf6ec;
+    --cream-100:#f5ecdc;
+    --cream-200:#ebdfc9;
+    --cream-300:#dccfb4;
+    --ink:#2d342e;
+    --ink-soft:#4a524a;
+    --sage-100:#dbe4d5;
+    --sage-200:#b6c4ad;
+    --sage-300:#8ea683;
+    --sage-400:#6b8262;
+    --sage-500:#4f6347;
+    --sky-100:#e3ecf1;
+    --sky-200:#c5d8e2;
+    --sky-300:#9fbcca;
+    --sky-400:#7ba0b2;
+    --sky-500:#5a8395;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    font-family:'EB Garamond', Georgia, serif;
+    background:var(--cream-50);
+    color:var(--ink);
+    font-size:19px;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+    font-feature-settings:"liga","dlig";
+  }
+  .serif{font-family:'DM Serif Display', 'EB Garamond', serif; font-weight:400;}
+  .cursive{font-family:'Parisienne', 'Segoe Script', cursive; font-weight:400;}
+  .mono{font-family:'SFMono-Regular',Menlo,monospace; font-size:12px; letter-spacing:0.08em; text-transform:uppercase;}
+  ::selection{background:var(--sage-200); color:var(--ink);}
+  a{color:inherit;}
+  button{font-family:inherit; cursor:pointer; touch-action:manipulation;}
+  .grain::before{
+    content:""; position:fixed; inset:0; pointer-events:none; z-index:100; opacity:0.35;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.18  0 0 0 0 0.2  0 0 0 0 0.18  0 0 0 0.06 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    mix-blend-mode:multiply;
+  }
+
+  /* responsive layout — mobile-first */
+  .sec-pad{padding:60px 20px;}
+  @media(min-width:640px){.sec-pad{padding:80px 36px;}}
+  @media(min-width:1024px){.sec-pad{padding:120px 64px;}}
+
+  .foot-pad{padding:36px 20px;}
+  @media(min-width:640px){.foot-pad{padding:48px 36px;}}
+  @media(min-width:1024px){.foot-pad{padding:60px 64px;}}
+
+  .rsvp-thanks{padding:80px 20px;text-align:center;}
+  @media(min-width:640px){.rsvp-thanks{padding:120px 36px;}}
+  @media(min-width:1024px){.rsvp-thanks{padding:160px 64px;}}
+
+  .hero{position:relative;min-height:100svh;display:grid;grid-template-columns:1fr;grid-template-rows:1fr auto;background:var(--cream-50);}
+  .hero-left{padding:36px 20px 32px;display:flex;flex-direction:column;justify-content:space-between;position:relative;z-index:2;}
+  .hero-imgs{display:none;}
+  .hero-strip{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;align-items:center;border-top:1px solid var(--cream-300);padding:14px 20px;background:var(--cream-100);}
+  @media(min-width:768px){
+    .hero{grid-template-columns:1.1fr 1fr;grid-template-rows:auto;}
+    .hero-left{padding:56px 64px 48px;}
+    .hero-imgs{display:block;position:relative;padding:56px 64px 48px 0;overflow:hidden;}
+    .hero-strip{flex-wrap:nowrap;padding:18px 64px;}
+  }
+
+  .iti-row{display:grid;grid-template-columns:72px 40px 1fr;align-items:baseline;padding:20px 0;border-bottom:1px solid var(--cream-300);gap:12px;}
+  .iti-num{display:none;}
+  @media(min-width:640px){
+    .iti-row{grid-template-columns:120px 60px 1fr 220px;gap:24px;padding:28px 0;}
+    .iti-num{display:block;}
+  }
+
+  .split{display:grid;grid-template-columns:1fr;gap:40px;}
+  @media(min-width:768px){
+    .split-13{grid-template-columns:1fr 1.3fr;gap:72px;align-items:center;}
+    .split-31{grid-template-columns:1.3fr 1fr;gap:48px;}
+  }
+
+  .card-grid{display:grid;grid-template-columns:1fr;gap:1px;background:var(--sage-200);border:1px solid var(--sage-200);}
+  @media(min-width:600px){.card-grid{grid-template-columns:repeat(2,1fr);}}
+  @media(min-width:1024px){.card-grid{grid-template-columns:repeat(3,1fr);}}
+
+  .form-grid{display:grid;grid-template-columns:1fr;gap:28px;border-top:1px solid #3d443d;padding-top:40px;}
+  @media(min-width:640px){.form-grid{grid-template-columns:1fr 1fr;}}
+
+  .map-panel{position:relative;background:var(--sky-100);border:1px solid var(--sky-200);min-height:300px;overflow:hidden;}
+  @media(min-width:768px){.map-panel{min-height:460px;}}
+
+  .footer-flex{display:flex;flex-direction:column;gap:16px;}
+  @media(min-width:640px){.footer-flex{flex-direction:row;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;}}
+</style>
+</head>
+<body class="grain">
+<div id="root"></div>
+
+<script type="text/babel">
+const { useState, useEffect, useMemo, useRef } = React;
+
+// ---------- tweakable defaults ----------
+const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "paletteMode": "cream",
+  "heroVariant": "editorial",
+  "showCursiveName": true,
+  "rsvpOpen": true,
+  "honoreeName": "Rhiain",
+  "rsvpByDate": "April 28"
+}/*EDITMODE-END*/;
+
+// ---------- tiny SVG illustrations ----------
+const WavyDivider = ({color="var(--sage-300)"}) => (
+  <svg viewBox="0 0 1200 40" preserveAspectRatio="none" style={{display:'block',width:'100%',height:40}}>
+    <path d="M0 20 Q 75 0 150 20 T 300 20 T 450 20 T 600 20 T 750 20 T 900 20 T 1050 20 T 1200 20" fill="none" stroke={color} strokeWidth="1.5"/>
+  </svg>
+);
+
+const Compass = ({size=44}) => (
+  <svg width={size} height={size} viewBox="0 0 44 44" fill="none">
+    <circle cx="22" cy="22" r="20" stroke="currentColor" strokeWidth="1"/>
+    <circle cx="22" cy="22" r="14" stroke="currentColor" strokeWidth="0.6" strokeDasharray="1 3"/>
+    <path d="M22 8 L25 22 L22 36 L19 22 Z" fill="currentColor" opacity="0.85"/>
+    <circle cx="22" cy="22" r="1.6" fill="var(--cream-50)"/>
+  </svg>
+);
+
+const StripePlaceholder = ({label, tone='sage', aspect='4/5'}) => {
+  const colors = tone === 'sage'
+    ? ['#b6c4ad','#a5b59b','#dbe4d5']
+    : tone === 'sky'
+    ? ['#c5d8e2','#b0c7d5','#e3ecf1']
+    : ['#ebdfc9','#dccfb4','#f5ecdc'];
+  return (
+    <div style={{
+      aspectRatio:aspect, width:'100%',
+      background:`repeating-linear-gradient(135deg, ${colors[0]} 0 18px, ${colors[1]} 18px 36px, ${colors[2]} 36px 54px)`,
+      position:'relative', overflow:'hidden',
+    }}>
+      <div style={{position:'absolute',inset:0,background:'linear-gradient(180deg, rgba(45,52,46,0) 50%, rgba(45,52,46,0.2) 100%)'}}/>
+      <div style={{position:'absolute',left:14,bottom:12,right:14,display:'flex',justifyContent:'space-between',alignItems:'flex-end'}}>
+        <span className="mono" style={{color:'var(--cream-50)',fontSize:10,letterSpacing:'0.12em'}}>{label}</span>
+        <span className="mono" style={{color:'var(--cream-50)',fontSize:10,opacity:0.7}}>placeholder</span>
+      </div>
+    </div>
+  );
+};
+
+const Icon = ({name, size=22, color='currentColor'}) => {
+  const s = {width:size, height:size, stroke:color, fill:'none', strokeWidth:1.2, strokeLinecap:'round', strokeLinejoin:'round'};
+  switch(name){
+    case 'cup': return (
+      <svg viewBox="0 0 24 24" style={s}><path d="M4 8h12v6a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5V8Z"/><path d="M16 9h2a3 3 0 0 1 0 6h-2"/><path d="M7 3c0 1.5 1 1.5 1 3M11 3c0 1.5 1 1.5 1 3"/></svg>
+    );
+    case 'leaf': return (
+      <svg viewBox="0 0 24 24" style={s}><path d="M20 4c-8 0-14 4-14 11 0 3 2 5 5 5 7 0 11-6 11-14 0-1 0-2-2-2Z"/><path d="M6 19c2-5 6-9 12-12"/></svg>
+    );
+    case 'wave': return (
+      <svg viewBox="0 0 24 24" style={s}><path d="M3 9c2-2 4-2 6 0s4 2 6 0 4-2 6 0"/><path d="M3 15c2-2 4-2 6 0s4 2 6 0 4-2 6 0"/></svg>
+    );
+    case 'flame': return (
+      <svg viewBox="0 0 24 24" style={s}><path d="M12 3c2 3 5 5 5 9a5 5 0 0 1-10 0c0-2 1-3 2-4 0 2 1 3 2 3-1-3 0-6 1-8Z"/></svg>
+    );
+    case 'sun': return (
+      <svg viewBox="0 0 24 24" style={s}><circle cx="12" cy="12" r="4"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6l1.4 1.4M17 17l1.4 1.4M5.6 18.4 7 17M17 7l1.4-1.4"/></svg>
+    );
+    case 'moon': return (
+      <svg viewBox="0 0 24 24" style={s}><path d="M20 14A8 8 0 1 1 10 4a6 6 0 0 0 10 10Z"/></svg>
+    );
+    case 'rain': return (
+      <svg viewBox="0 0 24 24" style={s}><path d="M7 14a4 4 0 0 1 .5-8 6 6 0 0 1 11.5 2 3.5 3.5 0 0 1-1 7H7Z"/><path d="M8 18l-1 3M13 18l-1 3M18 18l-1 3"/></svg>
+    );
+    case 'arrow-down': return (
+      <svg viewBox="0 0 24 24" style={s}><path d="M12 4v16M6 14l6 6 6-6"/></svg>
+    );
+    case 'arrow-right': return (
+      <svg viewBox="0 0 24 24" style={s}><path d="M4 12h16M14 6l6 6-6 6"/></svg>
+    );
+    case 'envelope': return (
+      <svg viewBox="0 0 24 24" style={s}><rect x="3" y="5" width="18" height="14" rx="1"/><path d="M3 7l9 7 9-7"/></svg>
+    );
+    default: return null;
+  }
+};
+
+// ---------- Hero ----------
+function Hero({honoreeName, showCursiveName, onRsvp}){
+  return (
+    <section className="hero">
+      {/* Left: type */}
+      <div className="hero-left">
+        <div style={{display:'flex', justifyContent:'space-between', alignItems:'center'}}>
+          <span className="mono" style={{color:'var(--sage-500)'}}>you are cordially invited</span>
+          <span className="mono" style={{color:'var(--ink-soft)'}}>Karkloof ↗ KZN Midlands</span>
+        </div>
+
+        <div>
+          <div className="mono" style={{color:'var(--sage-500)', marginBottom:28}}>
+            Saturday · May 2 · 2026
+          </div>
+          <h1 className="serif" style={{
+            fontSize:'clamp(64px, 8.2vw, 132px)',
+            lineHeight:0.92,
+            margin:'0 0 10px',
+            letterSpacing:'-0.01em',
+          }}>
+            A day at<br/>
+            <em style={{fontStyle:'italic', color:'var(--sage-500)'}}>Karkloof</em><br/>
+            Falls.
+          </h1>
+          {showCursiveName && (
+            <div className="cursive" style={{fontSize:'clamp(38px, 4.6vw, 64px)', color:'var(--sky-500)', lineHeight:1, marginTop:12, marginLeft:6}}>
+              for {honoreeName}&rsquo;s birthday
+            </div>
+          )}
+          <p style={{maxWidth:480, marginTop:36, color:'var(--ink-soft)', fontSize:20, lineHeight:1.5}}>
+            A slow-morning picnic, a braai by the river, and a walk up the falls. Bring good shoes, a favourite blanket,
+            and a story worth telling twice.
+          </p>
+        </div>
+
+        <div style={{display:'flex', gap:14, alignItems:'center', flexWrap:'wrap'}}>
+          <button onClick={onRsvp} style={{
+            background:'var(--ink)', color:'var(--cream-50)', border:'none',
+            padding:'16px 28px', borderRadius:999, fontSize:15, letterSpacing:'0.04em',
+            fontFamily:'EB Garamond, serif', fontStyle:'italic',
+            display:'inline-flex', alignItems:'center', gap:10,
+          }}>
+            RSVP <Icon name="arrow-right" size={16} color="var(--cream-50)"/>
+          </button>
+          <a href="#day" style={{
+            padding:'16px 22px', fontSize:14, letterSpacing:'0.08em',
+            textTransform:'uppercase', textDecoration:'none', color:'var(--ink)',
+            borderBottom:'1px solid var(--ink)',
+          }}>
+            The plan
+          </a>
+          <span className="mono" style={{color:'var(--ink-soft)', marginLeft:6, display:'inline-flex', alignItems:'center', gap:6}}>
+            <Icon name="arrow-down" size={12}/> scroll
+          </span>
+        </div>
+      </div>
+
+      {/* Right: imagery stack */}
+      <div className="hero-imgs">
+        <div style={{position:'absolute', top:56, right:64, bottom:48, left:0, display:'grid', gridTemplateColumns:'1fr 1fr', gridTemplateRows:'1.1fr 0.9fr', gap:16}}>
+          <div style={{gridColumn:'1 / span 2', gridRow:'1', overflow:'hidden'}}>
+            <img src="images/karkloof-falls-img1.jpg" alt="Karkloof Falls" style={{width:'100%', height:'100%', objectFit:'cover', display:'block'}}/>
+          </div>
+          <div style={{gridColumn:'1', gridRow:'2', overflow:'hidden'}}>
+            <img src="images/karkloof-view.jpg" alt="Forest trail" style={{width:'100%', height:'100%', objectFit:'cover', display:'block'}}/>
+          </div>
+          <div style={{gridColumn:'2', gridRow:'2', position:'relative'}}>
+            <div style={{position:'absolute', inset:0, overflow:'hidden'}}>
+              <img src="images/karkloof-picnic.jpg" alt="River picnic" style={{width:'100%', height:'100%', objectFit:'cover', display:'block'}}/>
+            </div>
+
+            <div style={{
+              position:'absolute', right:-16, bottom:-18, background:'var(--cream-50)',
+              padding:'14px 18px', border:'1px solid var(--cream-300)',
+              transform:'rotate(3deg)', maxWidth:200, zIndex:1,
+            }}>
+              <div className="mono" style={{fontSize:10, color:'var(--sage-500)'}}>rain plan</div>
+              <div style={{fontSize:15, lineHeight:1.3, marginTop:4}}>
+                Braai moves to <em>the house</em> — same food, drier feet.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* footer strip */}
+      <div className="hero-strip">
+        <span className="mono" style={{color:'var(--sage-500)', display:'inline-flex', alignItems:'center', gap:8}}>
+          <Icon name="sun" size={14}/> 07:42 &nbsp;·&nbsp; <Icon name="moon" size={14}/> 18:04 &nbsp;·&nbsp; 19°C / 9°C expected
+        </span>
+        <span className="mono" style={{color:'var(--ink-soft)'}}>Bring: own meat · a side to share · drinks · warm layer</span>
+      </div>
+    </section>
+  );
+}
+
+// ---------- Itinerary ----------
+const ITINERARY = [
+  { time:'10:00', title:'Arrive & gather', body:'Meet at the Karkloof parking pavilion. Coffee from a flask, hugs, quick headcount.', icon:'cup' },
+  { time:'10:30', title:'Trail walk up the river', body:'Easy-going scramble — about 30 minutes up. Stop often.', icon:'leaf' },
+  { time:'11:15', title:'The falls', body:'Swim for the brave. Lie in the sun for the rest of us.', icon:'wave' },
+  { time:'13:00', title:'Back down · picnic & braai', body:'Salads out on the cloth, fire on the coals. Long lunch energy.', icon:'flame' },
+  { time:'17:00', title:'Wind down', body:"Enjoy the sunset. Leave with the light.", icon:'sun' },
+];
+
+function Itinerary(){
+  return (
+    <section id="day" className="sec-pad" style={{background:'var(--cream-100)'}}>
+      <div style={{maxWidth:1180, margin:'0 auto'}}>
+        <div style={{display:'flex', justifyContent:'space-between', alignItems:'flex-end', marginBottom:56, gap:40, flexWrap:'wrap'}}>
+          <div>
+            <div className="mono" style={{color:'var(--sage-500)', marginBottom:14}}>ii. the shape of the day</div>
+            <h2 className="serif" style={{fontSize:'clamp(44px,5vw,76px)', margin:0, lineHeight:1, letterSpacing:'-0.01em'}}>
+              From <em style={{color:'var(--sky-500)', fontStyle:'italic'}}>slow coffee</em><br/>to late afternoon.
+            </h2>
+          </div>
+          <p style={{maxWidth:360, color:'var(--ink-soft)', margin:0, fontSize:18}}>
+            None of this is strict. Show up for the bits you want. The falls
+            and the fire are the two fixed points — everything else is optional,
+            including the walk.
+          </p>
+        </div>
+
+        <ol style={{listStyle:'none', padding:0, margin:0, borderTop:'1px solid var(--cream-300)'}}>
+          {ITINERARY.map((it, i) => (
+            <li key={i} className="iti-row">
+              <div className="serif" style={{fontSize:34, color:'var(--sage-500)'}}>{it.time}</div>
+              <div style={{color:'var(--sky-400)', display:'flex', alignItems:'center'}}><Icon name={it.icon} size={28}/></div>
+              <div>
+                <div className="serif" style={{fontSize:28, lineHeight:1.15}}>{it.title}</div>
+                <div style={{marginTop:6, color:'var(--ink-soft)', maxWidth:520}}>{it.body}</div>
+              </div>
+              <div className="mono iti-num" style={{textAlign:'right', color:'var(--ink-soft)', fontSize:10}}>
+                no. 0{i+1} / 0{ITINERARY.length}
+              </div>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+  );
+}
+
+// ---------- Weather / Rain plan ----------
+function WeatherPlan({weather, setWeather}){
+  const isSunny = weather === 'sunny';
+  return (
+    <section className="sec-pad" style={{background:'var(--cream-50)'}}>
+      <div className="split split-13" style={{maxWidth:1180, margin:'0 auto'}}>
+        <div>
+          <div className="mono" style={{color:'var(--sage-500)', marginBottom:14}}>iii. the sky, willing</div>
+          <h2 className="serif" style={{fontSize:'clamp(40px,4.4vw,68px)', margin:0, lineHeight:1.02, letterSpacing:'-0.01em'}}>
+            If the weather <em style={{color:'var(--sky-500)', fontStyle:'italic'}}>isn&rsquo;t<br/>working</em>, neither are we.
+          </h2>
+          <p style={{marginTop:24, color:'var(--ink-soft)', maxWidth:440}}>
+            Karkloof in the rain is dramatic but miserable. If it&rsquo;s grey by Friday
+            night, I&rsquo;ll send a note and we&rsquo;ll roll everything back to the house —
+            same food, same people, better floors.
+          </p>
+
+          <div style={{display:'inline-flex', marginTop:32, background:'var(--cream-100)', padding:6, borderRadius:999, border:'1px solid var(--cream-300)'}}>
+            {[
+              {k:'sunny', label:'Plan A', ic:'sun'},
+              {k:'rain', label:'Plan B', ic:'rain'},
+            ].map(opt => (
+              <button key={opt.k} onClick={()=>setWeather(opt.k)} style={{
+                padding:'10px 20px', borderRadius:999, border:'none',
+                background: weather===opt.k ? 'var(--ink)' : 'transparent',
+                color: weather===opt.k ? 'var(--cream-50)' : 'var(--ink)',
+                fontFamily:'EB Garamond, serif', fontStyle:'italic', fontSize:15,
+                display:'inline-flex', alignItems:'center', gap:8,
+              }}><Icon name={opt.ic} size={16}/> {opt.label}</button>
+            ))}
+          </div>
+        </div>
+
+        <div style={{
+          background:isSunny ? 'var(--sage-100)' : 'var(--sky-100)',
+          border:`1px solid ${isSunny ? 'var(--sage-200)' : 'var(--sky-200)'}`,
+          padding:'44px 48px', position:'relative',
+          transition:'all 0.5s ease',
+        }}>
+          <div style={{display:'flex', justifyContent:'space-between', alignItems:'flex-start', marginBottom:28}}>
+            <div>
+              <div className="mono" style={{color: isSunny?'var(--sage-500)':'var(--sky-500)'}}>
+                {isSunny ? 'if sunshine · primary' : 'if raining · backup'}
+              </div>
+              <div className="serif" style={{fontSize:42, lineHeight:1.05, marginTop:8}}>
+                {isSunny ? 'Karkloof Falls' : 'At my house'}
+              </div>
+              <div className="cursive" style={{fontSize:28, color:isSunny?'var(--sage-400)':'var(--sky-400)', marginTop:4}}>
+                {isSunny ? 'the river plan' : 'the cosy plan'}
+              </div>
+            </div>
+            <div style={{color:isSunny?'var(--sage-400)':'var(--sky-400)'}}>
+              <Compass size={56}/>
+            </div>
+          </div>
+
+          <dl style={{margin:0, display:'grid', gridTemplateColumns:'140px 1fr', rowGap:14, columnGap:16, fontSize:17}}>
+            <dt className="mono" style={{color:'var(--ink-soft)'}}>Where</dt>
+            <dd style={{margin:0}}>{isSunny ? 'Karkloof Falls picnic site' : 'Home — 24 Wilson Road'}</dd>
+            <dt className="mono" style={{color:'var(--ink-soft)'}}>Arrive</dt>
+            <dd style={{margin:0}}>{isSunny ? '10:00 onwards' : '11:00 onwards'}</dd>
+            <dt className="mono" style={{color:'var(--ink-soft)'}}>Food</dt>
+            <dd style={{margin:0}}>Bring your own meat + a side to share. Fire &amp; basics on me.</dd>
+            <dt className="mono" style={{color:'var(--ink-soft)'}}>Footwear</dt>
+            <dd style={{margin:0}}>{isSunny ? 'Whatever you like — the trail is easy' : 'Slippers honestly'}</dd>
+            <dt className="mono" style={{color:'var(--ink-soft)'}}>Walk</dt>
+            <dd style={{margin:0}}>{isSunny ? 'Up the river, ~30 min, gentle' : 'A loop around the garden if you insist'}</dd>
+          </dl>
+
+          <div style={{marginTop:28, paddingTop:20, borderTop:`1px dashed ${isSunny?'var(--sage-300)':'var(--sky-300)'}`, fontSize:15, color:'var(--ink-soft)'}}>
+            Final call by <span className="serif" style={{fontSize:19, color:'var(--ink)'}}>Friday 8pm</span>. Check your phone Saturday morning just in case the clouds pull a surprise.
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ---------- Bring / details ----------
+function Details(){
+  const bring = [
+    {t:'Your own meat', d:'Boerewors, chops, chicken, a portobello — whatever you fancy on the fire.'},
+    {t:'A side, if you can', d:'Salad, garlic bread, chips. Enough for you plus a little extra.'},
+    {t:'A warm layer', d:'Midlands afternoons turn on a sixpence.'},
+    {t:'A blanket or cushion', d:'The rocks are handsome but unkind.'},
+    {t:'Your drink of choice', d:"A cocktail or mocktail, your vibe."},
+    {t:'Shoes, if you like', d:'The trail is easy. Barefoot, boots, crocs — you choose.'},
+    {t:'Swimmers', d:'The pool under the falls is cold in the best way.'},
+    {t:'R60 Entry Fee', d:'...sigh'},
+    {t:'A good mood', d:'Non-negotiable. Leave the week at the gate.'},
+  ];
+  return (
+    <section className="sec-pad" style={{background:'var(--sage-100)', position:'relative'}}>
+      <div style={{position:'absolute',top:0,left:0,right:0}}><WavyDivider color="var(--sage-300)"/></div>
+      <div style={{maxWidth:1180, margin:'0 auto'}}>
+        <div style={{display:'flex', justifyContent:'space-between', alignItems:'flex-end', gap:40, flexWrap:'wrap', marginBottom:56}}>
+          <div>
+            <div className="mono" style={{color:'var(--sage-500)', marginBottom:14}}>iv. what to bring</div>
+            <h2 className="serif" style={{fontSize:'clamp(40px,4.4vw,68px)', margin:0, lineHeight:1, letterSpacing:'-0.01em'}}>
+              A small, <em style={{color:'var(--sky-500)', fontStyle:'italic'}}>honest</em> list.
+            </h2>
+          </div>
+          <p style={{maxWidth:360, color:'var(--ink-soft)', margin:0}}>
+            Everyone brings their own meat for the braai, and ideally a side to
+            share around the cloth. I&rsquo;ll handle fire, plates, and cake.
+          </p>
+        </div>
+
+        <div className="card-grid">
+          {bring.map((b,i)=>(
+            <div key={i} style={{background:'var(--sage-100)', padding:'32px 28px', minHeight:180}}>
+              <div className="mono" style={{color:'var(--sage-500)'}}>0{i+1}</div>
+              <div className="serif" style={{fontSize:26, marginTop:10, lineHeight:1.1}}>{b.t}</div>
+              <div style={{color:'var(--ink-soft)', marginTop:8, fontSize:17}}>{b.d}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ---------- Map card ----------
+function Map(){
+  return (
+    <section className="sec-pad" style={{background:'var(--cream-50)'}}>
+      <div className="split split-31" style={{maxWidth:1180, margin:'0 auto'}}>
+        <div className="map-panel">
+          <svg viewBox="0 0 600 460" style={{position:'absolute',inset:0,width:'100%',height:'100%'}} preserveAspectRatio="none">
+            {[...Array(14)].map((_,i)=>{
+              const r = 40 + i*22;
+              return <ellipse key={i} cx="380" cy="240" rx={r} ry={r*0.7} fill="none" stroke="var(--sky-300)" strokeWidth={i%3===0?1:0.4} opacity={0.9-i*0.04}/>;
+            })}
+            <path d="M0 340 Q 150 320 220 300 T 360 230 T 520 160 T 640 120" fill="none" stroke="var(--sage-400)" strokeWidth="2.5"/>
+            <path d="M0 340 Q 150 320 220 300 T 360 230 T 520 160 T 640 120" fill="none" stroke="var(--sage-400)" strokeWidth="1" strokeDasharray="2 6" opacity="0.7" transform="translate(0 6)"/>
+            <path d="M420 460 Q 400 380 380 340 T 370 240" fill="none" stroke="var(--sky-400)" strokeWidth="3"/>
+            <circle cx="380" cy="240" r="10" fill="var(--ink)"/>
+            <circle cx="380" cy="240" r="4" fill="var(--cream-50)"/>
+            {[...Array(9)].map((_,i)=>(
+              <circle key={i} cx={80 + i*38} cy={340 - i*14 - (i>4? (i-4)*10:0)} r="2" fill="var(--sage-500)"/>
+            ))}
+          </svg>
+          <div style={{position:'absolute', top:24, left:24, background:'var(--cream-50)', padding:'12px 14px', border:'1px solid var(--cream-300)'}}>
+            <div className="mono" style={{color:'var(--sage-500)'}}>29° 18&rsquo; S · 30° 17&rsquo; E</div>
+            <div className="serif" style={{fontSize:22, marginTop:4}}>Karkloof Falls</div>
+          </div>
+          <div style={{position:'absolute', bottom:24, right:24, textAlign:'right'}}>
+            <div className="cursive" style={{fontSize:28, color:'var(--sky-500)'}}>this way ↗</div>
+          </div>
+        </div>
+
+        <div style={{display:'flex', flexDirection:'column', justifyContent:'center'}}>
+          <div className="mono" style={{color:'var(--sage-500)', marginBottom:14}}>v. getting there</div>
+          <h2 className="serif" style={{fontSize:'clamp(36px,3.4vw,52px)', margin:0, lineHeight:1.05}}>
+            About <em style={{color:'var(--sky-500)', fontStyle:'italic'}}>30 minutes</em> from town.
+          </h2>
+          <p style={{color:'var(--ink-soft)', marginTop:18}}>
+            Take the R103 through Howick, turn left after the Karkloof Country
+            Club, follow the gravel all the way until the road ends at trees.
+            Signal gets patchy — download the map before you leave.
+            <br /><br/>
+            4x4 and high clearance vehicles are recommended, so carpooling is encouraged. If you can offer or need a lift, check the carpool list. Plus, it&rsquo;s more fun to arrive together.
+
+          </p>
+          <div style={{display:'flex', gap:10, marginTop:22, flexWrap:'wrap'}}>
+            <a href="https://maps.app.goo.gl/G9ZesBaL56CqVvZSA" target="_blank" rel="noopener noreferrer" style={pillBtn()}>Open in Maps ↗</a>
+            <a href="https://docs.google.com/document/d/1NWllwspKv_RY1RCWJYyPWvYCrwMjvtTlG-9H42LiYfo/edit?usp=sharing" target="_blank" rel="noopener noreferrer" style={pillBtn('ghost')}>Carpool list</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+const pillBtn = (variant) => ({
+  display:'inline-block', padding:'12px 20px', borderRadius:999,
+  textDecoration:'none', fontSize:14, letterSpacing:'0.04em',
+  border: variant==='ghost' ? '1px solid var(--ink)' : '1px solid var(--ink)',
+  background: variant==='ghost' ? 'transparent' : 'var(--ink)',
+  color: variant==='ghost' ? 'var(--ink)' : 'var(--cream-50)',
+  fontFamily:'EB Garamond, serif', fontStyle:'italic',
+});
+
+// ---------- RSVP ----------
+const SHEET_URL = 'https://script.google.com/macros/s/AKfycby7ZloQmUlDNLFidd26GnGxpdMS0i3yV2MX8gee0mJV-Xwo3WGu4Lp7-KfyB2h77F52/exec';
+
+function RSVP({rsvpByDate}){
+  const [form, setForm] = useState({name:'', coming:null, notes:''});
+  const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const canSubmit = form.name.trim() && form.coming !== null;
+
+  const handleSubmit = async () => {
+    setSubmitting(true);
+    try {
+      await fetch(SHEET_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {'Content-Type': 'text/plain'},
+        body: JSON.stringify({name:form.name, coming:form.coming, notes:form.notes}),
+      });
+    } catch (_) {}
+    setSubmitted(true);
+  };
+
+  if (submitted) {
+    return (
+      <section id="rsvp" className="rsvp-thanks" style={{background:'var(--ink)', color:'var(--cream-50)'}}>
+        <div className="mono" style={{color:'var(--sage-200)', marginBottom:16}}>received with thanks</div>
+        {form.coming ? (
+          <>
+            <h2 className="serif" style={{fontSize:'clamp(48px,5.6vw,92px)', margin:0, lineHeight:1}}>
+              See you <em style={{color:'var(--sky-300)', fontStyle:'italic'}}>by the river</em>,
+            </h2>
+            <div className="cursive" style={{fontSize:48, color:'var(--sky-200)', marginTop:16}}>{form.name || 'friend'} —</div>
+            <p style={{maxWidth:520, margin:'28px auto 0', color:'var(--cream-200)'}}>
+              I&rsquo;ll send driving notes and a weather call on Friday night.
+            </p>
+          </>
+        ) : (
+          <>
+            <h2 className="serif" style={{fontSize:'clamp(48px,5.6vw,92px)', margin:0, lineHeight:1}}>
+              You&rsquo;ll be <em style={{color:'var(--sky-300)', fontStyle:'italic'}}>missed</em>.
+            </h2>
+            <div className="cursive" style={{fontSize:48, color:'var(--sky-200)', marginTop:16}}>{form.name || 'friend'} —</div>
+            <p style={{maxWidth:520, margin:'28px auto 0', color:'var(--cream-200)'}}>
+              Sorry you can&rsquo;t make it, We&rsquo;ll save you a piece of cake.
+            </p>
+          </>
+        )}
+        <button onClick={()=>setSubmitted(false)} style={{
+          marginTop:40, background:'transparent', color:'var(--cream-50)', border:'1px solid var(--cream-300)',
+          padding:'12px 20px', borderRadius:999, fontFamily:'EB Garamond, serif', fontStyle:'italic',
+        }}>edit response</button>
+      </section>
+    );
+  }
+
+  return (
+    <section id="rsvp" className="sec-pad" style={{background:'var(--ink)', color:'var(--cream-50)'}}>
+      <div style={{maxWidth:980, margin:'0 auto'}}>
+        <div style={{display:'flex', justifyContent:'space-between', alignItems:'flex-end', marginBottom:56, gap:40, flexWrap:'wrap'}}>
+          <div>
+            <div className="mono" style={{color:'var(--sage-200)', marginBottom:14}}>vi. rsvp</div>
+            <h2 className="serif" style={{fontSize:'clamp(48px,5.6vw,92px)', margin:0, lineHeight:0.98}}>
+              Will you <em style={{color:'var(--sky-300)', fontStyle:'italic'}}>come</em>?
+            </h2>
+            <div className="cursive" style={{fontSize:36, color:'var(--sky-200)', marginTop:10}}>kindly reply by {rsvpByDate}</div>
+          </div>
+          <p style={{maxWidth:320, color:'var(--cream-200)', margin:0}}>
+            A loose headcount helps with cake and blanket-math.
+            No fanfare required.
+          </p>
+        </div>
+
+        <div className="form-grid">
+          <Field label="Your name">
+            <input
+              value={form.name} onChange={e=>setForm({...form, name:e.target.value})}
+              placeholder="e.g. Jane Doe"
+              style={inputStyle()}
+            />
+          </Field>
+
+<div style={{gridColumn:'1 / -1'}}>
+            <div className="mono" style={{color:'var(--sage-200)', marginBottom:10}}>Are you in</div>
+            <div style={{display:'flex', gap:12, flexWrap:'wrap'}}>
+              {[
+                {k:true, label:"Yes, I'll be there", sub:'count me in'},
+                {k:false, label:"Can't this time", sub:'next round'},
+              ].map(opt=>(
+                <button key={String(opt.k)} type="button" onClick={()=>setForm(f=>({...f, coming:opt.k}))}
+                  style={{
+                    flex:'1 1 280px', textAlign:'left', padding:'20px 22px',
+                    background: form.coming===opt.k ? 'var(--cream-50)' : 'transparent',
+                    color: form.coming===opt.k ? 'var(--ink)' : 'var(--cream-50)',
+                    border:`1px solid ${form.coming===opt.k ? 'var(--cream-50)' : '#3d443d'}`,
+                    borderRadius:4, fontFamily:'EB Garamond, serif',
+                  }}>
+                  <div className="serif" style={{fontSize:24, lineHeight:1.1}}>{opt.label}</div>
+                  <div className="mono" style={{marginTop:6, opacity:0.7}}>{opt.sub}</div>
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <Field label="Anything I should know" full>
+            <textarea
+              value={form.notes} onChange={e=>setForm({...form, notes:e.target.value})}
+              placeholder="dietary stuff, arriving late, need a lift…"
+              rows={3}
+              style={{...inputStyle(), resize:'vertical'}}
+            />
+          </Field>
+        </div>
+
+        <div style={{marginTop:36, display:'flex', justifyContent:'space-between', alignItems:'center', flexWrap:'wrap', gap:20}}>
+          <span className="mono" style={{color:'var(--cream-200)', display:'inline-flex', alignItems:'center', gap:8}}><Icon name="arrow-right" size={12} color="var(--cream-200)"/> replies help me bring the right amount of cake</span>
+          <button disabled={!canSubmit || submitting} onClick={handleSubmit} style={{
+            background: canSubmit ? 'var(--cream-50)' : '#3d443d',
+            color: canSubmit ? 'var(--ink)' : 'var(--cream-200)',
+            border:'none', padding:'18px 34px', borderRadius:999,
+            fontSize:16, fontFamily:'EB Garamond, serif', fontStyle:'italic',
+            cursor: canSubmit && !submitting ? 'pointer' : 'not-allowed',
+            display:'inline-flex', alignItems:'center', gap:10,
+          }}>
+            {submitting ? 'Sending…' : 'Send reply'} <Icon name="envelope" size={16} color={canSubmit?'var(--ink)':'var(--cream-200)'}/>
+          </button>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Field({label, children, full}){
+  return (
+    <label style={{display:'block', gridColumn: full ? '1 / -1' : 'auto'}}>
+      <div className="mono" style={{color:'var(--sage-200)', marginBottom:10}}>{label}</div>
+      {children}
+    </label>
+  );
+}
+
+const inputStyle = () => ({
+  width:'100%', background:'transparent', border:'none',
+  borderBottom:'1px solid #3d443d', color:'var(--cream-50)',
+  padding:'10px 0 12px', fontSize:22, fontFamily:'EB Garamond, serif',
+  outline:'none',
+});
+
+
+// ---------- Footer ----------
+function Footer({honoreeName}){
+  return (
+    <footer className="foot-pad" style={{background:'var(--cream-100)', borderTop:'1px solid var(--cream-300)'}}>
+      <div className="footer-flex" style={{maxWidth:1180, margin:'0 auto'}}>
+        <div>
+          <div className="cursive" style={{fontSize:34, color:'var(--sage-500)'}}>love, {honoreeName}.</div>
+          <div className="mono" style={{color:'var(--ink-soft)', marginTop:6}}>may 2 · karkloof · or the back stoep</div>
+        </div>
+        <div style={{display:'flex', gap:24, alignItems:'center'}}>
+          <span className="mono" style={{color:'var(--ink-soft)'}}>questions? whatsapp me.</span>
+          <span style={{color:'var(--sky-400)'}}><Compass size={36}/></span>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
+// ---------- Tweaks ----------
+function TweaksPanel({tweaks, setTweaks, visible}){
+  if (!visible) return null;
+  const field = (k, label, children) => (
+    <div style={{marginBottom:16}}>
+      <div className="mono" style={{fontSize:10, color:'var(--sage-500)', marginBottom:6}}>{label}</div>
+      {children}
+    </div>
+  );
+  return (
+    <div style={{
+      position:'fixed', right:20, bottom:20, width:300, zIndex:1000,
+      background:'var(--cream-50)', border:'1px solid var(--cream-300)',
+      padding:'18px 20px', fontFamily:'EB Garamond, serif',
+      boxShadow:'0 30px 60px -20px rgba(45,52,46,0.25)',
+    }}>
+      <div style={{display:'flex', justifyContent:'space-between', alignItems:'baseline', marginBottom:14, paddingBottom:10, borderBottom:'1px solid var(--cream-300)'}}>
+        <span className="serif" style={{fontSize:22}}>Tweaks</span>
+        <span className="mono" style={{color:'var(--ink-soft)'}}>no. 27</span>
+      </div>
+
+      {field('name','Honoree name',
+        <input value={tweaks.honoreeName} onChange={e=>setTweaks({honoreeName:e.target.value})}
+          style={{width:'100%', padding:'8px 10px', fontSize:16, fontFamily:'EB Garamond, serif', border:'1px solid var(--cream-300)', background:'var(--cream-100)'}}/>
+      )}
+
+      {field('rsvp','RSVP by',
+        <input value={tweaks.rsvpByDate} onChange={e=>setTweaks({rsvpByDate:e.target.value})}
+          style={{width:'100%', padding:'8px 10px', fontSize:16, fontFamily:'EB Garamond, serif', border:'1px solid var(--cream-300)', background:'var(--cream-100)'}}/>
+      )}
+
+      {field('cursive','Show cursive subtitle',
+        <label style={{display:'flex', gap:8, alignItems:'center'}}>
+          <input type="checkbox" checked={tweaks.showCursiveName} onChange={e=>setTweaks({showCursiveName:e.target.checked})}/>
+          <span>Cursive &ldquo;for ___&rsquo;s birthday&rdquo;</span>
+        </label>
+      )}
+
+      {field('palette','Palette emphasis',
+        <div style={{display:'flex', gap:6}}>
+          {[
+            {k:'cream',c:'var(--cream-200)'},
+            {k:'sage',c:'var(--sage-300)'},
+            {k:'sky',c:'var(--sky-300)'},
+          ].map(p=>(
+            <button key={p.k} onClick={()=>setTweaks({paletteMode:p.k})} style={{
+              flex:1, height:40, background:p.c, border: tweaks.paletteMode===p.k?'2px solid var(--ink)':'1px solid var(--cream-300)',
+              fontFamily:'EB Garamond, serif', fontStyle:'italic', textTransform:'capitalize',
+            }}>{p.k}</button>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+// ---------- App ----------
+function App(){
+  const [tweaks, setTweaksState] = useState(TWEAK_DEFAULTS);
+  const [tweaksVisible, setTweaksVisible] = useState(false);
+  const [weather, setWeather] = useState('sunny');
+
+  const setTweaks = (patch) => {
+    setTweaksState(prev=>{
+      const next = {...prev, ...patch};
+      try{
+        window.parent.postMessage({type:'__edit_mode_set_keys', edits:patch}, '*');
+      }catch(e){}
+      return next;
+    });
+  };
+
+  useEffect(()=>{
+    const onMsg = (e) => {
+      if (!e.data) return;
+      if (e.data.type === '__activate_edit_mode') setTweaksVisible(true);
+      if (e.data.type === '__deactivate_edit_mode') setTweaksVisible(false);
+    };
+    window.addEventListener('message', onMsg);
+    try{ window.parent.postMessage({type:'__edit_mode_available'}, '*'); }catch(e){}
+    return ()=>window.removeEventListener('message', onMsg);
+  },[]);
+
+  useEffect(()=>{
+    const map = {
+      cream:'var(--cream-50)',
+      sage:'#eef2e9',
+      sky:'#eef3f6',
+    };
+    document.body.style.background = map[tweaks.paletteMode] || 'var(--cream-50)';
+  },[tweaks.paletteMode]);
+
+  const goRsvp = () => {
+    const el = document.getElementById('rsvp');
+    if (el) window.scrollTo({top: el.getBoundingClientRect().top + window.scrollY, behavior:'smooth'});
+  };
+
+  return (
+    <>
+      <Hero honoreeName={tweaks.honoreeName} showCursiveName={tweaks.showCursiveName} onRsvp={goRsvp}/>
+      <Itinerary/>
+      <WeatherPlan weather={weather} setWeather={setWeather}/>
+      <Details/>
+      <Map/>
+      <RSVP rsvpByDate={tweaks.rsvpByDate}/>
+      <Footer honoreeName={tweaks.honoreeName}/>
+      <TweaksPanel tweaks={tweaks} setTweaks={setTweaks} visible={tweaksVisible}/>
+    </>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+</script>
+</body>
+</html>
