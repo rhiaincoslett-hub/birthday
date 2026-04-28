@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>A Day at Karkloof Falls · May 2</title>
+<title>A Day at Karkloof Falls · May 16</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Parisienne&display=swap" rel="stylesheet">
@@ -186,6 +186,9 @@ const Icon = ({name, size=22, color='currentColor'}) => {
     case 'arrow-right': return (
       <svg viewBox="0 0 24 24" style={s}><path d="M4 12h16M14 6l6 6-6 6"/></svg>
     );
+    case 'arrow-ne': return (
+      <svg viewBox="0 0 24 24" style={s}><path d="M7 17L17 7M17 7H9M17 7v8"/></svg>
+    );
     case 'envelope': return (
       <svg viewBox="0 0 24 24" style={s}><rect x="3" y="5" width="18" height="14" rx="1"/><path d="M3 7l9 7 9-7"/></svg>
     );
@@ -201,7 +204,7 @@ function Hero({honoreeName, showCursiveName, onRsvp}){
       <div className="hero-left">
         <div style={{display:'flex', justifyContent:'space-between', alignItems:'center'}}>
           <span className="mono" style={{color:'var(--sage-500)'}}>you are cordially invited</span>
-          <span className="mono" style={{color:'var(--ink-soft)'}}>Karkloof ↗{'︎'} KZN Midlands</span>
+          <span className="mono" style={{color:'var(--ink-soft)', display:'inline-flex', alignItems:'center', gap:4}}>Karkloof <Icon name="arrow-ne" size={11}/> KZN Midlands</span>
         </div>
 
         <div>
@@ -484,7 +487,7 @@ function Map(){
             <div className="serif" style={{fontSize:22, marginTop:4}}>Karkloof Falls</div>
           </div>
           <div style={{position:'absolute', bottom:24, right:24, textAlign:'right'}}>
-            <div className="cursive" style={{fontSize:28, color:'var(--sky-500)'}}>this way ↗{'︎'}</div>
+            <div className="cursive" style={{fontSize:28, color:'var(--sky-500)', display:'inline-flex', alignItems:'center', gap:6}}>this way <Icon name="arrow-ne" size={22}/></div>
           </div>
         </div>
 
@@ -502,7 +505,7 @@ function Map(){
 
           </p>
           <div style={{display:'flex', gap:10, marginTop:22, flexWrap:'wrap'}}>
-            <a href="https://maps.app.goo.gl/G9ZesBaL56CqVvZSA" target="_blank" rel="noopener noreferrer" style={pillBtn()}>Open in Maps ↗{'︎'}</a>
+            <a href="https://maps.app.goo.gl/G9ZesBaL56CqVvZSA" target="_blank" rel="noopener noreferrer" style={{...pillBtn(), display:'inline-flex', alignItems:'center', gap:6}}>Open in Maps <Icon name="arrow-ne" size={13}/></a>
             <a href="https://docs.google.com/document/d/1NWllwspKv_RY1RCWJYyPWvYCrwMjvtTlG-9H42LiYfo/edit?usp=sharing" target="_blank" rel="noopener noreferrer" style={pillBtn('ghost')}>Carpool list</a>
           </div>
         </div>
