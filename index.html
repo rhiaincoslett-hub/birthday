@@ -116,7 +116,7 @@ const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
   "showCursiveName": true,
   "rsvpOpen": true,
   "honoreeName": "Rhiain",
-  "rsvpByDate": "April 28"
+  "rsvpByDate": "May 12"
 }/*EDITMODE-END*/;
 
 // ---------- tiny SVG illustrations ----------
@@ -201,12 +201,12 @@ function Hero({honoreeName, showCursiveName, onRsvp}){
       <div className="hero-left">
         <div style={{display:'flex', justifyContent:'space-between', alignItems:'center'}}>
           <span className="mono" style={{color:'var(--sage-500)'}}>you are cordially invited</span>
-          <span className="mono" style={{color:'var(--ink-soft)'}}>Karkloof ↗ KZN Midlands</span>
+          <span className="mono" style={{color:'var(--ink-soft)'}}>Karkloof ↗{'︎'} KZN Midlands</span>
         </div>
 
         <div>
           <div className="mono" style={{color:'var(--sage-500)', marginBottom:28}}>
-            Saturday · May 2 · 2026
+            Saturday · May 16 · 2026
           </div>
           <h1 className="serif" style={{
             fontSize:'clamp(64px, 8.2vw, 132px)',
@@ -282,7 +282,7 @@ function Hero({honoreeName, showCursiveName, onRsvp}){
       {/* footer strip */}
       <div className="hero-strip">
         <span className="mono" style={{color:'var(--sage-500)', display:'inline-flex', alignItems:'center', gap:8}}>
-          <Icon name="sun" size={14}/> 07:42 &nbsp;·&nbsp; <Icon name="moon" size={14}/> 18:04 &nbsp;·&nbsp; 19°C / 9°C expected
+          <Icon name="sun" size={14}/> 06:36 &nbsp;·&nbsp; <Icon name="moon" size={14}/> 17:14 &nbsp;·&nbsp; 22°C / 7°C expected
         </span>
         <span className="mono" style={{color:'var(--ink-soft)'}}>Bring: own meat · a side to share · drinks · warm layer</span>
       </div>
@@ -484,7 +484,7 @@ function Map(){
             <div className="serif" style={{fontSize:22, marginTop:4}}>Karkloof Falls</div>
           </div>
           <div style={{position:'absolute', bottom:24, right:24, textAlign:'right'}}>
-            <div className="cursive" style={{fontSize:28, color:'var(--sky-500)'}}>this way ↗</div>
+            <div className="cursive" style={{fontSize:28, color:'var(--sky-500)'}}>this way ↗{'︎'}</div>
           </div>
         </div>
 
@@ -502,7 +502,7 @@ function Map(){
 
           </p>
           <div style={{display:'flex', gap:10, marginTop:22, flexWrap:'wrap'}}>
-            <a href="https://maps.app.goo.gl/G9ZesBaL56CqVvZSA" target="_blank" rel="noopener noreferrer" style={pillBtn()}>Open in Maps ↗</a>
+            <a href="https://maps.app.goo.gl/G9ZesBaL56CqVvZSA" target="_blank" rel="noopener noreferrer" style={pillBtn()}>Open in Maps ↗{'︎'}</a>
             <a href="https://docs.google.com/document/d/1NWllwspKv_RY1RCWJYyPWvYCrwMjvtTlG-9H42LiYfo/edit?usp=sharing" target="_blank" rel="noopener noreferrer" style={pillBtn('ghost')}>Carpool list</a>
           </div>
         </div>
